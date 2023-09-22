@@ -1,7 +1,7 @@
 # AutomationChallenge
 
 
-*NOTE: As a find, slowness might be because of the ads that are shown, as in each screen that does not have ads, the process goes fast, but in the screens that have ads, the process gets slow
+*NOTE for web tests: As a find, slowness might be because of the ads that are shown, as in each screen that does not have ads, the process goes fast, but in the screens that have ads, the process gets slow
 
 ChallengeExercise is a Java-based automation project that utilizes Maven, Selenium WebDriver, TestNG, Cucumber, and Log4j2 to automate 
 interactions with the Automation Exercise website.
