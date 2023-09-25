@@ -170,7 +170,22 @@ public class MyStepDefsChallenge {
 
     }
 
-    @After
+    @Then("Validate with incorrect data, that the login will not pass without correct email and password")
+    public void validateWithIncorrectDataThatTheLoginWillNotPassWithoutCorrectEmailAndPassword() {
+        logPage.checkLoginIncorrectData();
+    }
+
+    @And("Validate that the email field in the login page has to have format AtDomaindotcom")
+    public void validateThatTheEmailFieldInTheLoginPageHasToHaveFormatAtDomaindotcom() {
+        logPage.checkEmailStructure();
+    }
+
+    @Then("Validate that the email field in the signup only accepts correct format emails")
+    public void validateThatTheEmailFieldInTheSignupOnlyAcceptsCorrectFormatEmails() {
+        logPage.validateNewUserSignupEmail();
+    }
+
+        @After
     public void takeScreenshot(Scenario scenario) {
         // Capture a screenshot in case of test failure and attach it to the scenario
         if (scenario.isFailed()) {
@@ -190,20 +205,5 @@ public class MyStepDefsChallenge {
         driver.quit();
         logger.info("Closed the browser and quit the WebDriver instance.");
 
-    }
-
-    @Then("Validate with incorrect data, that the login will not pass without correct email and password")
-    public void validateWithIncorrectDataThatTheLoginWillNotPassWithoutCorrectEmailAndPassword() {
-        logPage.checkLoginIncorrectData();
-    }
-
-    @And("Validate that the email field in the login page has to have format AtDomaindotcom")
-    public void validateThatTheEmailFieldInTheLoginPageHasToHaveFormatAtDomaindotcom() {
-        logPage.checkEmailStructure();
-    }
-
-    @Then("Validate that the email field in the signup only accepts correct format emails")
-    public void validateThatTheEmailFieldInTheSignupOnlyAcceptsCorrectFormatEmails() {
-        logPage.validateNewUserSignupEmail();
     }
 }
