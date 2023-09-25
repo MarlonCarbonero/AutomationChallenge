@@ -41,9 +41,6 @@ public class MyStepDefsChallenge {
         if (browserType.equalsIgnoreCase("chrome")) {
             // Initialize WebDriver for Chrome browser
             driver = new ChromeDriver();
-        } else if (browserType.equalsIgnoreCase("firefox")) {
-            // Initialize WebDriver for Firefox browser
-            driver = new FirefoxDriver();
         } else if (browserType.equalsIgnoreCase("edge")) {
             // Initialize WebDriver for Edge browser
             driver = new EdgeDriver();
