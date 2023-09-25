@@ -1,8 +1,10 @@
 # AutomationChallenge
 
 
-*NOTE for web tests: As a find, slowness might be because of the ads that are shown, as in each screen that does not have ads, the process goes fast, but in the screens that have ads, the process gets slow
-
+*NOTES: 
+-for web tests: As a find, slowness might be because of the ads that are shown, as in each screen that does not have ads, the process goes fast, but in the screens that have ads, the process gets slow
+-For the warning below, selenium version 4.13.0 repairs (as mentioned in their github) but hasn't been released yet
+WARNING: Unable to find an exact match for CDP version 117, so returning the closest version found: 116
 ChallengeExercise is a Java-based automation project that utilizes Maven, Selenium WebDriver, TestNG, Cucumber, and Log4j2 to automate 
 interactions with the Automation Exercise website.
 
