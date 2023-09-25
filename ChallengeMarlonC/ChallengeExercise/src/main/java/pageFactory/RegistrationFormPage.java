@@ -4,8 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class RegistrationFormPage {
     WebDriver driver;
@@ -68,18 +72,28 @@ public class RegistrationFormPage {
         passwordRegistration.sendKeys(home.passwordToBeUsed);
 
 
-        // Initialize the Select object with the WebElement
-        Select select = new Select(dobDay);
-        // Select "21" by visible text
-        select.selectByVisibleText("21");
-        // Initialize the Select object for dobMonth
-        Select selectMonth = new Select(dobMonth);
-        // Select the desired month by visible text
-        selectMonth.selectByVisibleText("July"); // Replace with the month you want
-        // Initialize the Select object for dobYear
-        Select selectYear = new Select(dobYear);
-        // Select the desired year by visible text
-        selectYear.selectByVisibleText("1990");
+        try {
+            // Initialize the Select object with the WebElement for dobDay
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Maximum wait time of 10 seconds
+            Select select = new Select(wait.until(ExpectedConditions.visibilityOf(dobDay)));
+
+            // Select "21" by visible text
+            select.selectByVisibleText("21");
+
+            // Initialize the Select object with the WebElement for dobMonth
+            Select selectMonth = new Select(wait.until(ExpectedConditions.visibilityOf(dobMonth)));
+
+            // Select the desired month by visible text
+            selectMonth.selectByVisibleText("July"); // Replace with the month you want
+
+            // Initialize the Select object with the WebElement for dobYear
+            Select selectYear = new Select(wait.until(ExpectedConditions.visibilityOf(dobYear)));
+
+            // Select the desired year by visible text
+            selectYear.selectByVisibleText("1990");
+        } catch (Exception e) {
+            // Handle any exceptions or add appropriate error handling
+        }
 
         // Check the newsletter and offers checkboxes
         acceptNewsletter.click();

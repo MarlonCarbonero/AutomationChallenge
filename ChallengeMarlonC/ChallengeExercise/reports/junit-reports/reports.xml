@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="33.763" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="To automate the creation, log in and delation of an account in automationexercise" name="To be in &quot;home&quot; in automationexercise site" time="33.645">
+<system-out><![CDATA[
+Given the user launches the automationexercise site.........................passed
+When the user clicks the home page option in the navbar.....................passed
+Then Verify that home page is visible successfully..........................passed
+When the user clicks on the Signup / Login button...........................passed
+Then to Validate the ‘New User Sign up’ message is visible..................passed
+Then Validate that the email field in the signup only accepts correct format emails.passed
+And Type in "name" and "email" on the Sign up Form..........................passed
+And the user clicks on the Sign up button...................................passed
+Then to validate the ‘ENTER ACCOUNT INFORMATION’ Message is visible.........passed
+Then Fill the details for the registration form.............................passed
+And Validate the account created message being visible......................passed
+And Validate the -Logged in as username- being visible......................passed
+Then the user clicks on the button log out..................................passed
+And Validate the Login to your account message is visible...................passed
+Then Validate with incorrect data, that the login will not pass without correct email and password.passed
+And Validate that the email field in the login page has to have format AtDomaindotcom.passed
+And enter the email and password user before to log in......................passed
+Then click on the Login button..............................................passed
+And validate that Logged in as username is visible..........................passed
+Then Click on the Delete account button.....................................passed
+And Validate that ACCOUNT DELETED message is visible........................passed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -1,10 +1,16 @@
 package pageFactory;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
+import java.util.Random;
 
 public class loginPage {
 
@@ -33,6 +39,8 @@ public class loginPage {
 
     @FindBy(xpath = "//p[text()='Your email or password is incorrect!']")
     WebElement emailpasswordIncorrect;
+    @FindBy(xpath = "//p[text()='Email Address already exist!']")
+    WebElement emailAlreadyExist;
 
     public loginPage(WebDriver driver) {
         this.driver = driver;
@@ -49,7 +57,33 @@ public class loginPage {
         newEmail.sendKeys(home.emailToBeUsed);
         registerButton.click();
 
+        try {
+            // Attempt to locate the new element
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Maximum wait time of 10 seconds
+            WebElement elementWithText = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[text()='Email Address already exist!']")));
+
+            // If the element is found, perform actions on it
+            // Generate three random numbers
+            Random rand = new Random();
+            int randomNumber1 = rand.nextInt(10);
+            int randomNumber2 = rand.nextInt(10);
+            int randomNumber3 = rand.nextInt(10);
+
+            // Modify the emailToBeUsed property
+            home.emailToBeUsed = home.emailBeforeAt + randomNumber1 + randomNumber2 + randomNumber3 + home.emailAfterAt;
+            newEmail.clear();
+            newEmail.sendKeys(home.emailToBeUsed);
+            registerButton.click();
+
+            // Continue with other test steps
+
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            // Continue with other test steps or take appropriate action
+        }
     }
+
+
+
 
     public void registerTextCheck() {
         // Get the actual text of the element

@@ -4,7 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class HomePage {
     WebDriver driver;
@@ -12,7 +16,7 @@ public class HomePage {
     //All the selectors will be here
 
     //Home button located in the nav bar
-    @FindBy(xpath = "//header[@id='header']/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[1]/a[1]")
+    @FindBy(xpath = "(//a[@href='/'])[2]")
     WebElement homeButton;
 
     //the login/register button located in the nav bar
@@ -27,7 +31,7 @@ public class HomePage {
     WebElement continueAfterRegistrationButton;
 
     //home logged in as
-    @FindBy(xpath = "//header[@id='header']/div[1]/div[1]/div[1]/div[2]/div[1]/ul[1]/li[10]/a[1]")
+    @FindBy(xpath = "//*[contains(text(), 'Logged in as')]")
     WebElement loggedInUsername;
 
     //Logout button
@@ -49,7 +53,9 @@ public class HomePage {
 
     //created to store the user,email and password in the future
     public String usernameLogged = "MarlonChallenge";
-    public String emailToBeUsed = "tq112135t23@gmail.com";
+    public String emailBeforeAt = "MarlonCChallenge";
+    public String emailAfterAt = "@gmail.com";
+    public String emailToBeUsed = emailBeforeAt + emailAfterAt;
     public String passwordToBeUsed = "JustTryingMyBest";
 
     public HomePage(WebDriver driver) {
@@ -63,21 +69,29 @@ public class HomePage {
 
     public void clickHome() {
         // Click on the Home button in the navigation bar
-        homeButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Maximum wait time of 10 seconds
+        wait.until(ExpectedConditions.elementToBeClickable(homeButton)).click();
+
     }
 
     public void getCSSHomeButton() {
         // Get the CSS property value of the Home button
         String actualValue = homeButton.getCssValue("color");
-        // Define the expected value
-        String expectedValue = "rgba(255, 165, 0, 1)"; // Replace with the expected CSS property value
-        // Assert that the actual value matches the expected value
-        Assert.assertEquals(actualValue, expectedValue, "The home button is not selected");
+        // Define the expected values
+        String expectedValue1 = "rgba(255, 165, 0, 1)";
+        String expectedValue2 = "rgb(255, 165, 0)"; //Firefox only sends 3 numbers
+        // Assert that the actual value matches either expected value1 or expected value2
+        Assert.assertTrue(actualValue.equals(expectedValue1),
+                "The home button is not selected");
     }
 
     public void clickLoginRegisterButton() {
         // Click on the Login/Register button
-        loginRegisterButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Maximum wait time of 10 seconds
+        wait.until(ExpectedConditions.elementToBeClickable(loginRegisterButton)).click();
+
     }
 
     public void checkAccountCreated() {
@@ -106,7 +120,10 @@ public class HomePage {
 
     public void clickLogoutButton() {
         // Click the logout button to log out of the account
-        logoutButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Maximum wait time of 10 seconds
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
+
     }
 
     public void validateLoginText() {
@@ -123,9 +140,11 @@ public class HomePage {
 
 
     public void clickDeleteAccountButton() throws InterruptedException {
-        // Click the delete account button to delete the account
-        deleteAccountButton.click();
-        Thread.sleep(3000);
+        // Click the logout button to log out of the account
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Maximum wait time of 10 seconds
+        wait.until(ExpectedConditions.elementToBeClickable(deleteAccountButton)).click();
+
     }
 
     public void verifyAccountDeleteText() {

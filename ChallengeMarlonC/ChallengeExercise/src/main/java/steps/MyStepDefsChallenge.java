@@ -11,6 +11,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import pageFactory.HomePage;
 import pageFactory.RegistrationFormPage;
 import pageFactory.loginPage;
@@ -32,10 +34,27 @@ public class MyStepDefsChallenge {
 
     @Before
     public void initDriver() throws InterruptedException {
+        // Specify the desired browser type ("chrome," "firefox," or "edge")
+        String browserType = "chrome";
+
         // Initialize WebDriver for Chrome browser
-        driver = new ChromeDriver();
+        if (browserType.equalsIgnoreCase("chrome")) {
+            // Initialize WebDriver for Chrome browser
+            driver = new ChromeDriver();
+        } else if (browserType.equalsIgnoreCase("firefox")) {
+            // Initialize WebDriver for Firefox browser
+            driver = new FirefoxDriver();
+        } else if (browserType.equalsIgnoreCase("edge")) {
+            // Initialize WebDriver for Edge browser
+            driver = new EdgeDriver();
+        } else {
+            throw new IllegalArgumentException("Invalid browser type: " + browserType);
+        }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+
         // Initialize the 'home' object from the PageFactory
         home = new HomePage(driver);
         logPage = new loginPage(driver);
